@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.jogador{
+    height: 300px;
+    width: 300px;
+    border: 20px;
+    background: yellow;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-family: 'Segoe UI';
+    padding: 20px;
+}
+
+.botaoEscolha{
+    width: 45px;
+    padding: 45px;
+}
+
+.computador{
+    height: 300px;
+    width: 300px;
+    border: 5px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-family: 'Segoe UI';
+    background: red;
+}

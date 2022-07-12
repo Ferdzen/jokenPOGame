@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>JokenPô!</title>
+</head>
+<body>
+  
+  <div class="jogador">
+    <p id="jogador-titulo">Jogador</p>
+    <span id="jogador-contador">0</span>
+    <img id="jogador-escolha-imagem" alt="Escolha do Jogador"src="" width="150px" height="150px">
+    <button type="button" id="botaoEscolha" onclick="resultado('pedra')">Pedra</button>
+    <button type="button" id="botaoEscolha" onclick="resultado('tesoura')">Tesoura</button>
+    <button type="button" id="botaoEscolha" onclick="resultado('papel')">Papel</button>
+  </div>
+  
+
+
+  <div class="computador">
+    <p id="computador-titulo">Computador</p>
+    <span id="computador-contador">0</span>
+    <img id="computador-imagem-escolha" alt="Escolha do computador"src="" width="150px" height="150px"> 
+  </div> 
+  
+</body>
+
+<script>
+    var pontinho_jogador = 0;
+    var pontinho_computador = 0;
+    var empate =0;
+    var escolhaComputador = '';
+    const opcoesComputador = ['pedra', 'papel', 'tesoura'];
+
+    function jogadaComputador() { // escolha aleatoria do computador
+        var acao = Math.floor(Math.random() * opcoesComputador.length);
+
+        if (acao == 1) { // recebe pedra
+            document.getElementById('computador-imagem-escolha').src='pedra.png';
+            escolhaComputador = opcoesComputador[0];
+        } else if (acao == 2) { // recebe papel
+            document.getElementById('computador-imagem-escolha').src='papel.png';
+            escolhaComputador = opcoesComputador[1];
+        } else { // recebe tesoura
+            document.getElementById('computador-imagem-escolha').src='tesoura.png';
+            escolhaComputador = opcoesComputador[2];
+        }
+    }
+
+    function resultado(opcao){
+
+        switch(opcao){
+            case 'pedra':
+                document.getElementById('jogador-escolha-imagem').src='pedra.png';
+                break;
+            case 'tesoura':
+                document.getElementById('jogador-escolha-imagem').src='tesoura.png';
+                break;
+            case 'papel':
+                document.getElementById('jogador-escolha-imagem').src='papel.png';
+                break;
+            
+        }
+
+        jogadaComputador();
+
+        if ((opcao == 'pedra') && (jogadaComputador() == 'papel')) { // papel vence - Computador pontua
+            pontinho_computador++;
+            
+            document.getElementById('computador-contador').innerHTML = pontinho_computador;
+            
+
+        } else if ((opcao == 'pedra') && (jogadaComputador() == 'tesoura')) { // pedra vence - Jogador pontua
+            pontinho_jogador++;
+            document.getElementById('computador-contador').innerHTML = pontinho_jogador;
+            
+
+        } else if ((opcao == 'pedra' && jogadaComputador == 'pedra')) { // Empate - Ninguem ganha
+
+            empate++;
+
+        } else if ((opcao == 'papel' && jogadaComputador == 'pedra')) { // papel vence - Jogador pontua
+            pontinho_jogador++;
+            document.getElementById('computador-contador').innerHTML = pontinho_jogador;
+
+        } else if ((opcao == 'papel') && (jogadaComputador() == 'tesoura')) { // tesoura vence - Computador pontua
+            pontinho_computador++;
+            document.getElementById('computador-contador').innerHTML = pontinho_computador;
+
+        } else if ((opcao == 'papel') && (jogadaComputador() == 'papel')) { // Empate - Ninguem ganha    
+            empate++;
+
+        } else if ((opcao == 'tesoura') && (jogadaComputador() == 'papel')) { // tesoura vence - Jogador pontua
+            pontinho_jogador++;
+            document.getElementById('jogador-contador').innerHTML = pontinho_jogador;
+            
+
+        } else if ((opcao == 'tesoura' && jogadaComputador == 'pedra')) { // pedra vence - Computador pontua
+            pontinho_computador++;
+
+            document.getElementById('computador-contador').innerHTML = pontinho_computador;
+            
+
+        } else if ((opcao == 'tesoura' && jogadaComputador == 'tesoura')) { // Empate - Ninguem ganha
+            
+            empate++;
+        }
+    }
+
+
+  </script> 
+
+</html>
